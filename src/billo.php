@@ -95,8 +95,11 @@ function main() {
     if ($message->hasFlag(Storage::FLAG_SEEN)) {
       // continue;
     } else {
-      messageAddFlag($GLOBALS['mailStorage'], $id, $message, Storage::FLAG_SEEN);
+      if ($listsConfig->isMember($list, $message->getHeader('from'))) {
+        messageAddFlag($GLOBALS['mailStorage'], $id, $message, Storage::FLAG_SEEN);
+      }
     }
+        
 
     distributeMessage($listsConfig, $GLOBALS['mailSender'], $id, $message);
   }
