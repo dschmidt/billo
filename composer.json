@@ -1,4 +1,6 @@
 {
+    "name": "dschmidt/billo",
+    "description": "Simple tool for hosting static mailing lists on regular webhosting accounts",
     "license": [
         "AGPL-3.0-or-later"
     ],
