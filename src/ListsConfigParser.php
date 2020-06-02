@@ -29,7 +29,7 @@ class ListsConfigParser
     return array_keys($this->_config);
   }
   
-  public funtion isMember($listAdresses, $senderAddress)
+  public function isMember($listAdresses, $senderAddress)
   {
     return in_array($listAdresses, $senderAddress)
   }
