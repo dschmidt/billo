@@ -49,7 +49,7 @@ $mailSender->Port       = 587;                                 // TCP port to co
 For retrieving mails from the mailbox you need to provide a `Laminas Mail` Storage implementation, e.g. Imap.
 For sending mails you need to provide an instance of the Billo `PHPMailer` subclass. You can configure it just like the upstream version.
 
-# Installation
+## Installation
 
 Apart from creating the config files, you need to checkout deps with `composer install`.
 
