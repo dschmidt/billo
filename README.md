@@ -2,7 +2,8 @@
 
 This is a simple project for hosting static mailing lists on regular webhosting accounts.
 
-It works by fetching unread messages from a Mailbox and resending to users on mailing lists matching the `to` header.
+It works by fetching unread messages from a Mailbox (for example via IMAP) and resending to users on mailing lists.
+Mails are marked as read afterwards, so they won't be sent again.
 
 Mailing lists are configured in a config file that looks like this:
 
