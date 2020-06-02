@@ -55,6 +55,10 @@ Apart from creating the config files, you need to checkout deps with `composer i
 
 Create a cronjob that fetches and sends mails as often as you want. Be careful not to start two parallel runs.
 
+## Run Billo
+
+`php src/billo.php --config /path/to/your/listsConfig.ini`
+
 ## TODO
 
 1. Better error handling and proper error messages
