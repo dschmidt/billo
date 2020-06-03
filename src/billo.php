@@ -35,7 +35,6 @@ function distributeMessage($listsConfig, $mailSender, $id, $message) {
 
     // Copy over content
     $content = $GLOBALS['mailStorage']->getRawContent($id);
-    $content = substr($content, strpos($content, "\n")+1);
     $mailSender->setBilloContent($content);
     $mailSender->ContentType = $message->ContentType;
 
