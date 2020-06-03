@@ -92,7 +92,7 @@ function main() {
 
   foreach ($GLOBALS['mailStorage'] as $id => $message) {
     if ($message->hasFlag(Storage::FLAG_SEEN)) {
-      // continue;
+      continue;
     } else {
       messageAddFlag($GLOBALS['mailStorage'], $id, $message, Storage::FLAG_SEEN);
     }
