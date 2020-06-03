@@ -79,7 +79,7 @@ function main() {
   if (in_array('config', array_keys($options))) {
     $listsConfigFile = $options['config'];
   } else {
-    echo usage();
+    echo usage() . PHP_EOL;
     die(1);
   }
 
