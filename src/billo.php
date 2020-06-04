@@ -47,7 +47,6 @@ function distributeMessage($listsConfig, $mailSender, $id, $message) {
 
     // Copy over content
     $content = $GLOBALS['mailStorage']->getRawContent($id);
-    $content = substr($content, strpos($content, "\n")+1);
     $mailSender->setBilloContent($content);
     $mailSender->ContentType = $message->ContentType;
 
@@ -91,7 +90,7 @@ function main() {
   if (in_array('config', array_keys($options))) {
     $listsConfigFile = $options['config'];
   } else {
-    echo usage();
+    echo usage() . PHP_EOL;
     die(1);
   }
 
