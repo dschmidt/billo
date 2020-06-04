@@ -29,9 +29,9 @@ class ListsConfigParser
     return array_keys($this->_config);
   }
   
-  public function isMember($listAdresses, $senderAddress)
+  public function isMember($senderAddress, $listAdress)
   {
-    return in_array($listAdresses, $senderAddress)
+    return array_key_exists($senderAddress, $this->getMembers($listAddress));
   }
 
   public function getMembers($listAddress)
