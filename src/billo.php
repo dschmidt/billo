@@ -27,6 +27,13 @@ function distributeMessage($listsConfig, $mailSender, $id, $message) {
 
     echo PHP_EOL . "Distribute message: " . $message->subject . " to " . $listsConfig->getListName($list->getEmail()) . " <" . $list->getEmail() . ">" . PHP_EOL ;
 
+    // Set MIME header from mailStorage 
+    $header = $mailSender->headerLine("Content-Type",$message->contentType);
+    if (isset($message->ContentTransferEncoding)){
+        $header .= $mailSender->headerLine("Content-Transfer-Encoding",$message->ContentTransferEncoding);
+    }
+    $mailSender->setBilloHeader($header);
+    
     // Set our mailing list as sender
     $mailSender->Sender = $list->getEmail();
     $mailSender->Subject =
@@ -36,7 +43,7 @@ function distributeMessage($listsConfig, $mailSender, $id, $message) {
     // Copy over content
     $content = $GLOBALS['mailStorage']->getRawContent($id);
     $mailSender->setBilloContent($content);
-    $mailSender->ContentType = $message->ContentType;
+
 
     foreach($listsConfig->getMembers($list->getEmail()) as $toEmail => $toName) {
       // Add original from addresses: yes, there can be multiple.
