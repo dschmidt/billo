@@ -27,7 +27,7 @@ class BilloPHPMailer extends PHPMailer
     return $this->_billoContent;
   }
 
-  public function getMAilMIME() {
+  public function getMailMIME() {
     return $this->_billoHeader;
   }
 
