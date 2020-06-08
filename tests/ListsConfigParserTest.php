@@ -24,5 +24,18 @@ final class ListsConfigParserTest extends TestCase
                 'someone@other-domain.de' => 'Bar',
             ]
         );
+
+        $this->assertTrue(
+            $parser->isMember('user@some-domain.tld', 'test-list@domain.tld')
+        );
+
+        $this->assertFalse(
+            $parser->isMember('bla@some-domain.tld', 'test-list@domain.tld')
+        );
+
+        // TODO: implement case insensitive matching
+        // $this->assertTrue(
+        //     $parser->isMember('User@some-domain.tld', 'test-list@domain.tld')
+        // );
     }
 }

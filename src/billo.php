@@ -39,6 +39,18 @@ function distributeMessage($listsConfig, $mailSender, $id, $message) {
     $mailSender->Subject =
       '['.$listsConfig->getListName($list->getEmail()).'] '.$message->subject;
 
+    $members = $listsConfig->getMembers($list->getEmail());                                                                                                                                         
+     // Check at least one of the senders ("from") is subscribed to the list                                                                     
+     $subscribed = false;                                                                                                                        
+     foreach($message->getHeader('from')->getAddressList() as $from) {
+      if ($listsConfig->isMember($from->getEmail(), $members)) {
+        $subscribed = true;                                
+       }                                
+     }                                                                                                                                           
+     if(!$subscribed) {
+      echo "Not distributed message from unknown sender" . PHP_EOL;
+       continue;                               
+     }
 
     // Copy over content
     $content = $GLOBALS['mailStorage']->getRawContent($id);
@@ -100,10 +112,9 @@ function main() {
   foreach ($GLOBALS['mailStorage'] as $id => $message) {
     if ($message->hasFlag(Storage::FLAG_SEEN)) {
       continue;
-    } else {
-      messageAddFlag($GLOBALS['mailStorage'], $id, $message, Storage::FLAG_SEEN);
     }
 
+    messageAddFlag($GLOBALS['mailStorage'], $id, $message, Storage::FLAG_SEEN);
     distributeMessage($listsConfig, $GLOBALS['mailSender'], $id, $message);
   }
 }

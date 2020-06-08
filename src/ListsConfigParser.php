@@ -28,6 +28,11 @@ class ListsConfigParser
   public function getLists() {
     return array_keys($this->_config);
   }
+  
+  public function isMember($senderAddress, $listAddress)
+  {
+    return array_key_exists($senderAddress, $this->getMembers($listAddress));
+  }
 
   public function getMembers($listAddress)
   {
